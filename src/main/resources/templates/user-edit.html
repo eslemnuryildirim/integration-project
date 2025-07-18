@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kullanıcı Bilgisi</title>
+</head>
+<body>
+<h2>Kullanıcı Bilgisi Güncelle</h2>
+
+<form th:action="@{'/users/' + ${user.id} + '/edit'}" th:object="${user}" method="post">
+
+    <label>Ad:</label>
+    <input type="text" th:field="*{name}" /><br>
+
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" /><br>
+
+    <label>Yaş:</label>
+    <input type="number" th:field="*{age}" /><br>
+
+    <label>Açıklama:</label>
+    <textarea th:field="*{description}"></textarea><br>
+
+    <button type="submit">Kaydet</button>
+</form>
+
+<a href="/users/page">← Geri dön</a>
+</body>
+</html>
