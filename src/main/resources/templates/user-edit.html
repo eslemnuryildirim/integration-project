@@ -2,27 +2,108 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Kullanıcı Bilgisi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f6fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2f3640;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            background-color: #0984e3;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #74b9ff;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #636e72;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #2d3436;
+        }
+    </style>
 </head>
 <body>
-<h2>Kullanıcı Bilgisi Güncelle</h2>
 
-<form th:action="@{'/users/' + ${user.id} + '/edit'}" th:object="${user}" method="post">
+<div class="form-container">
+    <h2>Kullanıcı Bilgisi Güncelle</h2>
 
-    <label>Ad:</label>
-    <input type="text" th:field="*{name}" /><br>
+    <form th:action="@{'/users/' + ${user.id} + '/edit'}" th:object="${user}" method="post">
 
-    <label>Email:</label>
-    <input type="email" th:field="*{email}" /><br>
+        <label>Ad:</label>
+        <input type="text" th:field="*{name}" />
 
-    <label>Yaş:</label>
-    <input type="number" th:field="*{age}" /><br>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" />
 
-    <label>Açıklama:</label>
-    <textarea th:field="*{description}"></textarea><br>
+        <label>Yaş:</label>
+        <input type="number" th:field="*{age}" />
 
-    <button type="submit">Kaydet</button>
-</form>
+        <label>Açıklama:</label>
+        <textarea th:field="*{description}"></textarea>
 
-<a href="/users/page">← Geri dön</a>
+        <button type="submit">Kaydet</button>
+    </form>
+
+    <a href="/users/page">← Geri dön</a>
+</div>
+
 </body>
 </html>

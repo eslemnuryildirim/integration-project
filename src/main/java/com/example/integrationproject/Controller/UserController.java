@@ -4,6 +4,7 @@ import com.example.integrationproject.Model.User;
 import com.example.integrationproject.Repository.UserRepository;
 import com.example.integrationproject.client.UserApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,4 +34,23 @@ public class UserController {
         userApiClient.fetchAndSaveUsers();
         return "Veriler API'den çekildi ve kaydedildi.";
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        return userRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        boolean result = userApiClient.deleteUserFromDatabase(id);
+
+        if (result) {
+            return ResponseEntity.ok("Kullanıcı silindi: ID " + id);
+        } else {
+            return ResponseEntity.status(404).body("Kullanıcı bulunamadı: ID " + id);
+        }
+    }
+
+
 }

@@ -30,5 +30,18 @@ public class UserApiClient {
         } else {
             System.out.println("No users fetched from API.");
         }
+
     }
+    public boolean deleteUserFromDatabase(Long userId) {
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            System.out.println("Kullanıcı silindi: ID " + userId);
+            return true;
+        } else {
+            System.out.println("Kullanıcı bulunamadı: ID " + userId);
+            return false;
+        }
+    }
+
 }
+
